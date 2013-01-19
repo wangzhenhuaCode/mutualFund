@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+	default-init-method="initDAO">
+
+<!-- configure data source -->
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close"> 
+		<property name="driverClass">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/mutualfund" />
+		<property name="user" value="root" />
+		<property name="password" value="root" />
+		<property name="maxPoolSize" value="50" />
+		<property name="minPoolSize" value="10" />
+		<property name="initialPoolSize" value="10" />
+		<property name="maxIdleTime" value="20000" />
+		<property name="idleConnectionTestPeriod" value="19000" />
+		<property name="testConnectionOnCheckin" value="true" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.jdbc.batch_size">30</prop>
+			</props>
+		</property>
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:/Hibernate/PO/
+				</value>
+			</list>
+		</property>
+	</bean>
+
+<!-- baseDAO  -->
+
+	<bean name="openSessionInViewInterceptor"
+		class="org.springframework.orm.hibernate3.support.OpenSessionInViewInterceptor">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="flushMode" value="1" />
+		<property name="singleSession" value="false" />
+	</bean>
+
+	<bean id="baseHibernateDAO" class="Hibernate.baseDAO.BaseHibernateDAO"
+		abstract="true">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+<!-- DAO -->	
+	
+	<bean id="CustomerDAO" class="Hibernate.DAO.CustomerDAO"
+		parent="baseHibernateDAO" />
+	
+	<bean id="EmployeeDAO" class="Hibernate.DAO.EmployeeDAO"
+		parent="baseHibernateDAO" />
+		
+	<bean id="FundDAO" class="Hibernate.DAO.FundDAO"
+		parent="baseHibernateDAO" />
+	
+	<bean id="FundPriceHistoryDAO" class="Hibernate.DAO.FundPriceHistoryDAO"
+		parent="baseHibernateDAO" />
+	
+	<bean id="PositionDAO" class="Hibernate.DAO.PositionDAO"
+		parent="baseHibernateDAO" />	
+		
+	<bean id="TransactionDAO" class="Hibernate.DAO.TransactionDAO"
+		parent="baseHibernateDAO" />	
+	
+
+</beans>
