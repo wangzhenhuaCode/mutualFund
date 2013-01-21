@@ -4,31 +4,31 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class EmployeeAction extends ActionSupport {
 //jkjk
-	public String EmployeeLogin(){
+	public String login(){
 		return "employeeLoginSuccess";
 	}
-	public String EmployeeLogout(){
+	public String logout(){
 		return "employeeLogoutSuccess";
 	}
-	public String EmployeeChangePassword(){
+	public String changePassword(){
 		return "employeeLoginSuccess";
 	}
-	public String EmployeeAddNewFund(){
+	public String addNewFund(){
 		return "employeeLoginSuccess";
 	}
-	public String EmployeeAddNewCustomerAccount(){
+	public String addNewCustomerAccount(){
 		return "employeeLoginSuccess";
 	}
-	public String EmployeeViewCustomerAccount(){
+	public String viewCustomerAccount(){
 		return "employeeLoginSuccess";
 	}
-	public String EmployeeResetCustomerPassword(){
+	public String resetCustomerPassword(){
 		return "employeeLoginSuccess";
 	}
-	public String EmployeeViewTransactionHistory(){
+	public String viewTransactionHistory(){
 		return "employeeLoginSuccess";
 	}
-	public String EmployeeCheckCustomerDeposit(){
+	public String checkCustomerDeposit(){
 		return "employeeLoginSuccess";
 	}
 }

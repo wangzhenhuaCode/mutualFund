@@ -13,7 +13,7 @@ public class CustomerAction extends ActionSupport {
 	private Customer customer;
 	private String newPassword;
 	private String errorInfo;
-	public String customerLogin(){
+	public String login(){
 		errorInfo="";
 		List<Customer> list=customerDAO.findByProperty("username", customer.getUsername());
 		if(list.size()==0){
