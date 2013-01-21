@@ -21,6 +21,6 @@ public class FinaceAction extends ActionSupport {
 	}
 	
 	public String cancel(){
-		return "cancel";
+		return "Cancel";
 	}
 }
