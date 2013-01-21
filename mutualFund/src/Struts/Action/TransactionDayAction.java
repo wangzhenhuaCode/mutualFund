@@ -1,5 +1,7 @@
 package Struts.Action;
 
-public class TransactionDayAction {
+import com.opensymphony.xwork2.ActionSupport;
+
+public class TransactionDayAction extends ActionSupport{
 
 }
