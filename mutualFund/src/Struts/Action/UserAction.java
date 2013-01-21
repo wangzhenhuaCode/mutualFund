@@ -9,7 +9,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UserAction extends ActionSupport {
-	private ICustomerDAO customerDAO;//changes
+	private ICustomerDAO customerDAO;//changes ddd
 	private Customer customer;
 	private String newPassword;
 	private String errorInfo;
