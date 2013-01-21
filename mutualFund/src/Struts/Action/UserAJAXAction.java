@@ -19,7 +19,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UserAJAXAction extends ActionSupport{
-
+//sdfsdfs
 	private String email;
 	private String password;
 	private String errorInfo="";
