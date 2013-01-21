@@ -8,7 +8,7 @@ public class EmployeeAction extends ActionSupport {
 		return "employeeLoginSuccess";
 	}
 	public String logout(){
-		return "employeeLogoutSuccess";
+		return "employee";
 	}
 	public String changePassword(){
 		return "employeeLoginSuccess";
