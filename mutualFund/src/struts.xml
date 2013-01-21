@@ -1,21 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="user" extends="struts-default" namespace="/user">
-		<action name="user_*" class="UserAction"  method="{1}">
+	<package name="action" extends="struts-default" namespace="/user">
+		<action name="customer_*" class="CustomerAction"  method="{1}">
         	<result name="register">/register.jsp</result>
         	<result name="newPassword">/newPassword.jsp</result>
         	<result name="login"  type="redirectAction">user_index.action</result>
         	<result name="index">/login.jsp</result>
         </action>
-       <action name="bookmark_*" class="BookmarkAction"  method="{1}">
+       <action name="employee_*" class="EmployeeAction"  method="{1}">
         	<result name="viewBookmark">/viewBookmark.jsp</result>
         	<result name="manageBookmark">/manageBookmark.jsp</result>
         	<result name="addBookmark">/addBookmark.jsp</result>
         	<result name="updateBookmark">/updateBookmark.jsp</result>
         	<result name="backmanage" type="redirectAction">bookmark_manageBookmark.action</result>
         </action>
+        <action name="finance_*" class="FinanceAction"  method="{1}">
+        	<result name="viewBookmark">/viewBookmark.jsp</result>
+        	<result name="manageBookmark">/manageBookmark.jsp</result>
+        	<result name="addBookmark">/addBookmark.jsp</result>
+        	<result name="updateBookmark">/updateBookmark.jsp</result>
+        	<result name="backmanage" type="redirectAction">bookmark_manageBookmark.action</result>
+        </action>
+        <action name="trade_*" class="TradeAction"  method="{1}">
+        	<result name="viewBookmark">/viewBookmark.jsp</result>
+        	<result name="manageBookmark">/manageBookmark.jsp</result>
+        	<result name="addBookmark">/addBookmark.jsp</result>
+        	<result name="updateBookmark">/updateBookmark.jsp</result>
+        	<result name="backmanage" type="redirectAction">bookmark_manageBookmark.action</result>
+        </action>
+        <action name="transaction_*" class="TransactionAction"  method="{1}">
+        
+        	<result name="addBookmark">/addBookmark.jsp</result>
+        	<result name="backmanage" type="redirectAction">bookmark_manageBookmark.action</result>
+        </action>
 	</package>
+	
 	<package name="ajax" extends="json-default" namespace="/ajax">
 		<action name="ajax_*" class="UserAJAX"  method="{1}">
         	<result name="success"  type="json"/>
