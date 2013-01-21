@@ -8,7 +8,7 @@ import Hibernate.PO.Customer;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class UserAction extends ActionSupport {
+public class CustomerAction extends ActionSupport {
 	private ICustomerDAO customerDAO;//changes ddd wzh hkhk
 	private Customer customer;
 	private String newPassword;
