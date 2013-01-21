@@ -16,8 +16,6 @@
         	<result name="backmanage" type="redirectAction">bookmark_manageBookmark.action</result>
         </action>
         <action name="finance_*" class="FinanceAction"  method="{1}">
-        	<result name="viewBookmark">/viewBookmark.jsp</result>
-        	<result name="manageBookmark">/manageBookmark.jsp</result>
         	<result name="addBookmark">/addBookmark.jsp</result>
         	<result name="updateBookmark">/updateBookmark.jsp</result>
         	<result name="backmanage" type="redirectAction">bookmark_manageBookmark.action</result>
@@ -25,8 +23,6 @@
         <action name="trade_*" class="TradeAction"  method="{1}">
         	<result name="viewBookmark">/viewBookmark.jsp</result>
         	<result name="manageBookmark">/manageBookmark.jsp</result>
-        	<result name="addBookmark">/addBookmark.jsp</result>
-        	<result name="updateBookmark">/updateBookmark.jsp</result>
         	<result name="backmanage" type="redirectAction">bookmark_manageBookmark.action</result>
         </action>
         <action name="transaction_*" class="TransactionAction"  method="{1}">
