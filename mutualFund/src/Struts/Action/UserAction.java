@@ -12,7 +12,7 @@ public class UserAction extends ActionSupport {
 	private ICustomerDAO customerDAO;
 	private Customer customer;
 	private String newPassword;
-	private String errorInfo;//ERRIOR INFO
+	private String errorInfo;//ERRIOR
 	public String customerLogin(){
 		errorInfo="";
 		List<Customer> list=customerDAO.findByProperty("username", customer.getUsername());
