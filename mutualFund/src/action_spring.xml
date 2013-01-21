@@ -8,4 +8,11 @@
 	<bean id="CustomerAction"
 		class="Struts.Action.CustomerAction">
 	</bean>
+	<bean id="EmployeeAction"
+		class="Struts.Action.EmployeeAction">
+	</bean>
+	<bean id="FinanceAction"
+		class="Struts.Action.FinanceAction">
+	</bean>
+	
 </beans>
