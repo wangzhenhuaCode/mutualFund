@@ -18,7 +18,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class UserAJAXAction extends ActionSupport{
+public class TradeAJAXAction extends ActionSupport{
 
 	private String email;
 	private String password;
@@ -28,7 +28,7 @@ public class UserAJAXAction extends ActionSupport{
 	private JSONObject user;
 	private Integer lastPage;
 	private Integer bookmarkID;
-	private IZhenhuawBookmarkDAO bookmarkDAO;
+
 	public String login(){
 		userList=null;
 		errorInfo="";
