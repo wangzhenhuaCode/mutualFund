@@ -24,11 +24,11 @@ public class CustomerAction extends ActionSupport {
 			ActionContext ctx=ActionContext.getContext();
 			Map<String,Object> session=ctx.getSession();
 			session.put("customer", list.get(0));
-			return "sucessLogin";
+			return "customerSucessLogin";
 		}
 		else{
 			errorInfo="Password error!";
-			return "failureLogin";
+			return "customerFailureLogin";
 		}
 	}
 	public String changePassword(){
@@ -39,10 +39,10 @@ public class CustomerAction extends ActionSupport {
 		if(c.getPassword().equals(customer.getPassword())){
 			c.setPassword(newPassword);
 			customerDAO.update(c);
-			return "sucessChangePassword";
+			return "customerSucessChangePassword";
 		}else{
 			errorInfo="Password Error";
-			return "failureChangePassword";
+			return "customerFailureChangePassword";
 		}
 		
 	}
