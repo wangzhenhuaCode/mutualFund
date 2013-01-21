@@ -2,7 +2,7 @@ package Struts.Action;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class FinaceAction extends ActionSupport {
+public class FinanceAction extends ActionSupport {
 
 	public String requestCheck(){
 		return "Request Check succesfully";
