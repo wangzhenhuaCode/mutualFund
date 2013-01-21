@@ -8,4 +8,13 @@
 	<bean id="CustomerAction"
 		class="Struts.Action.CustomerAction">
 	</bean>
+	<bean id="TransactionDayAction"
+		class="Struts.Action.TransactionDayAction">
+	</bean>
+	<bean id="TradeAction"
+		class="Struts.Action.TradeAction">
+	</bean>
+	<bean id="TradeAJXAAction"
+		class="Struts.Action.TradeAJXAAction">
+	</bean>
 </beans>
