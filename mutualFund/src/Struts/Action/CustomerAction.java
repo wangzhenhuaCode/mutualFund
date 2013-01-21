@@ -46,6 +46,12 @@ public class CustomerAction extends ActionSupport {
 		}
 		
 	}
+	public String logout(){
+		ActionContext ctx=ActionContext.getContext();
+		Map<String,Object> session=ctx.getSession();
+		session.remove("customer");
+		return "logout";
+	}
 	public Customer getCustomer() {
 		return customer;
 	}

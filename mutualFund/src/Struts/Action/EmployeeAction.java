@@ -1,9 +1,19 @@
 package Struts.Action;
 
+import Hibernate.DAO.ICustomerDAO;
+import Hibernate.PO.Customer;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 public class EmployeeAction extends ActionSupport {
-//jkjk
+	private ICustomerDAO customerDAO;
+	private Customer customer;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	public void setCustomerDAO(ICustomerDAO customerDAO) {
+		this.customerDAO = customerDAO;
+	}
 	public String login(){
 		return "employeeLoginSuccess";
 	}
@@ -17,6 +27,7 @@ public class EmployeeAction extends ActionSupport {
 		return "employeeLoginSuccess";
 	}
 	public String addNewCustomerAccount(){
+		customerDAO.save(customer);
 		return "employeeLoginSuccess";
 	}
 	public String viewCustomerAccount(){
