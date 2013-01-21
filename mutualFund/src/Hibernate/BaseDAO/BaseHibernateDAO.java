@@ -1,6 +1,5 @@
 package Hibernate.BaseDAO;
-//dfdfd
-//1
+
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.sql.SQLException;
