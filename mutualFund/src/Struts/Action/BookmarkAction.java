@@ -13,7 +13,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 //import com.opensymphony.xwork2.ModelDriven;
 
-//Yuanxin Change 2
+//Yuanxin Change 21
 
 public class BookmarkAction extends ActionSupport {
 	private List<ZhenhuawBookmark> list;
