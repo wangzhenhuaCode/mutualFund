@@ -33,7 +33,7 @@
 	</package>
 	
 	<package name="ajax" extends="json-default" namespace="/ajax">
-		<action name="ajax_*" class="UserAJAX"  method="{1}">
+		<action name="ajax_*" class="TradeAJAXAction"  method="{1}">
         	<result name="success"  type="json"/>
         </action>
 	</package>
