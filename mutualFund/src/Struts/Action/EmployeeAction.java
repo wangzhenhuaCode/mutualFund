@@ -12,15 +12,23 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class EmployeeAction extends ActionSupport {
-	private IEmployeeDAO employeeDAO;//changes ddd wzh hkhk
+	private IEmployeeDAO employeeDAO;
+	private ICustomerDAO customerDAO;
+	private Customer customer;
 	private Employee employee;
 	private String newPassword;
 	private String errorInfo;
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 	public void setEmployeeDAO(IEmployeeDAO employeeDAO) {
 		this.employeeDAO = employeeDAO;
+	}
+	public void setCustomerDAO(ICustomerDAO customerDAO) {
+		this.customerDAO = customerDAO;
 	}
 	public String login(){
 		errorInfo="";
@@ -61,8 +69,9 @@ public class EmployeeAction extends ActionSupport {
 		return "employeeLoginSuccess";
 	}
 	public String addNewCustomerAccount(){
+		errorInfo="";
 		customerDAO.save(customer);
-		return "employeeLoginSuccess";
+		return "addNewCustomerAccountSuccess";
 	}
 	public String viewCustomerAccount(){
 		return "employeeLoginSuccess";
