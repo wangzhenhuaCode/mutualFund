@@ -21,7 +21,7 @@ public class Customer implements java.io.Serializable {
 	private String city;
 	private Integer state;
 	private String zip;
-	private Double cash;
+	private Long cash;
 	private Set transactions = new HashSet(0);
 	private Set positions = new HashSet(0);
 
@@ -34,7 +34,7 @@ public class Customer implements java.io.Serializable {
 	/** minimal constructor */
 	public Customer(String username, String password, String firstname,
 			String lastname, String addrLine1, String city, Integer state,
-			String zip, Double cash) {
+			String zip, Long cash) {
 		this.username = username;
 		this.password = password;
 		this.firstname = firstname;
@@ -49,7 +49,7 @@ public class Customer implements java.io.Serializable {
 	/** full constructor */
 	public Customer(String username, String password, String firstname,
 			String lastname, String addrLine1, String addrLine2, String city,
-			Integer state, String zip, Double cash, Set transactions,
+			Integer state, String zip, Long cash, Set transactions,
 			Set positions) {
 		this.username = username;
 		this.password = password;
@@ -147,11 +147,11 @@ public class Customer implements java.io.Serializable {
 		this.zip = zip;
 	}
 
-	public Double getCash() {
+	public Long getCash() {
 		return this.cash;
 	}
 
-	public void setCash(Double cash) {
+	public void setCash(Long cash) {
 		this.cash = cash;
 	}
 

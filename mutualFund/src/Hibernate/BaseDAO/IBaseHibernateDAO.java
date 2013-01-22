@@ -12,23 +12,24 @@ public interface IBaseHibernateDAO<T> {
 
 	public void delete(T object);
 	
-	public Integer count(final String queryString);
+	public Integer count(String property, String value);
 	
 	public List<T> findByProperty(String propertyName, Object value);
 
 	public List<T> findByTwoProperty(String propertyName1, Object value1,
 			String propertyName2, Object value2);
 
+	public List<T> findAll();
 	
+	public List<T> find(T object);
 
-	public List<T> findByQuery(String queryString);
+//	public List<T> findByQuery(String hqlquery);
 
 
-	public List<T> getListByPage(final String hql, final int offset,
-		final int length);
+	public List<T> getListByPage(final int offset,
+			final int length, final String property, final String value);
 	
-	public Integer updateBySQL(final String sql);
+//	public Integer updateBySQL(final String sql);
 	
-	public Integer max(final String queryString);
 
 }

@@ -7,7 +7,13 @@ import java.util.Date;
  */
 
 public class Transaction implements java.io.Serializable {
-
+	public static Integer SELLED=1;
+	public static Integer BOUGHT=2;
+	public static Integer PENDING_SELL=3;
+	public static Integer PENDING_BUY=4;
+	public static Integer DEPOSITED=5;
+	public static Integer PENDING_DEPOSIT=6;
+	public static Integer WITHDRAW=7;
 	// Fields
 
 	private Integer transactionId;
@@ -24,7 +30,7 @@ public class Transaction implements java.io.Serializable {
 	/** default constructor */
 	public Transaction() {
 	}
-
+	
 	/** minimal constructor */
 	public Transaction(Customer customer, Position position, Date executeDate,
 			Integer transactionType) {

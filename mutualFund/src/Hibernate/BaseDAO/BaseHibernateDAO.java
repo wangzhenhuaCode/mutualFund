@@ -44,6 +44,14 @@ public class BaseHibernateDAO<T> extends HibernateDaoSupport implements
 			throw re;
 		}
 	}
+	@SuppressWarnings("unchecked")
+	public List<T> find(T object){
+		try {
+			return getHibernateTemplate().findByExample(object);
+		} catch (RuntimeException re) {
+			throw re;
+		}
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<T> findByProperty(String propertyName, Object value) {
@@ -55,38 +63,24 @@ public class BaseHibernateDAO<T> extends HibernateDaoSupport implements
 			throw re;
 		}
 	}
-
-
 	@SuppressWarnings("unchecked")
-	public Integer count(final String queryString){
+	public List<T> findAll(){
 		try {
-			List<T> list = getHibernateTemplate().executeFind(new HibernateCallback() {
-				public Object doInHibernate(Session session)
-						throws HibernateException, SQLException {
-					Query query = session.createSQLQuery(queryString);
-					List<T> list = query.list();
-					return list;
-				}
-			});
-			return ((BigInteger)list.get(0)).intValue();
+			String queryString = "from " + entityName;
+			return getHibernateTemplate().find(queryString);
 		} catch (RuntimeException re) {
 			throw re;
 		}
 	}
-	public Integer max(final String queryString){
-		try {
-			List<T> list = getHibernateTemplate().executeFind(new HibernateCallback() {
-				public Object doInHibernate(Session session)
-						throws HibernateException, SQLException {
-					Query query = session.createSQLQuery(queryString);
-					List<T> list = query.list();
-					return list;
-				}
-			});
-			return (Integer)list.get(0);
-		} catch (RuntimeException re) {
-			throw re;
+
+	@SuppressWarnings("unchecked")
+	public Integer count(String property, String value){
+		String hql="select count(*) from "+entityName;
+		if(property!=null&&!property.equals("")){
+			hql=hql+" where "+property+"="+value;
 		}
+		List<Long> list=getHibernateTemplate().find(hql);
+		return (int)(long)list.get(0);
 	}
 
 
@@ -111,15 +105,18 @@ public class BaseHibernateDAO<T> extends HibernateDaoSupport implements
 
 
 	@SuppressWarnings("unchecked")
-	public List<T> findByQuery(String queryString) {
-		return getHibernateTemplate().find(queryString);
+	public List<T> findByQuery(String hqlquery) {
+		return getHibernateTemplate().find(hqlquery);
 	}
 	@SuppressWarnings("unchecked")
-	public List<T> getListByPage(final String hql, final int offset,
-			final int length) {
+	public List<T> getListByPage( final int offset,
+			final int length, final String property, final String value) {
 		List<T> list = getHibernateTemplate().executeFind(new HibernateCallback() {
 			public Object doInHibernate(Session session)
 					throws HibernateException, SQLException {
+				String hql="from " + entityName;
+				if(property!=null&&!property.equals(""))
+					hql=hql+" "+"where "+property+"="+value;
 				Query query = session.createQuery(hql);
 				query.setFirstResult(offset);
 				query.setMaxResults(length);
