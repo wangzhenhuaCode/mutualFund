@@ -5,8 +5,10 @@ import java.util.Map;
 
 import Hibernate.DAO.ICustomerDAO;
 import Hibernate.DAO.IEmployeeDAO;
+import Hibernate.DAO.IFundDAO;
 import Hibernate.PO.Customer;
 import Hibernate.PO.Employee;
+import Hibernate.PO.Fund;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -18,17 +20,25 @@ public class EmployeeAction extends ActionSupport {
 	private Employee employee;
 	private String newPassword;
 	private String errorInfo;
+	private Fund fund;
+	private IFundDAO fundDAO;
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+	public void setFund(Fund fund) {
+		this.fund = fund;
+	}
 	public void setEmployeeDAO(IEmployeeDAO employeeDAO) {
 		this.employeeDAO = employeeDAO;
 	}
 	public void setCustomerDAO(ICustomerDAO customerDAO) {
 		this.customerDAO = customerDAO;
+	}
+	public void setFundDAO(IFundDAO fundDAO) {
+		this.fundDAO = fundDAO;
 	}
 	public String login(){
 		errorInfo="";
@@ -49,7 +59,11 @@ public class EmployeeAction extends ActionSupport {
 		}
 	}
 	public String logout(){
-		return "employee";
+		errorInfo="";
+		ActionContext ctx=ActionContext.getContext();
+		Map<String,Object> session=ctx.getSession();
+		session.put("employee", null);
+		return "logoutSuccess";
 	}
 	public String changePassword(){
 		errorInfo="";
@@ -66,7 +80,9 @@ public class EmployeeAction extends ActionSupport {
 		}
 	}
 	public String addNewFund(){
-		return "employeeLoginSuccess";
+		errorInfo="";
+		fundDAO.save(fund);
+		return "addNewFundSuccess";
 	}
 	public String addNewCustomerAccount(){
 		errorInfo="";
