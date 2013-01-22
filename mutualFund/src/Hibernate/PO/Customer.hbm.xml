@@ -10,7 +10,7 @@
             <column name="customer_id" />
             <generator class="identity" />
         </id>
-        <property name="username" type="java.lang.String">
+        <property name="username"  type="java.lang.String">
             <column name="username" length="50" not-null="true" unique="true" />
         </property>
         <property name="password" type="java.lang.String">
