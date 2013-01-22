@@ -3,8 +3,6 @@ package Struts.Action;
 import java.util.Date;
 import java.util.Map;
 
-import Hibernate.DAO.ICustomerDAO;
-import Hibernate.DAO.IEmployeeDAO;
 import Hibernate.DAO.ITransactionDAO;
 import Hibernate.PO.Customer;
 import Hibernate.PO.Employee;
@@ -14,12 +12,8 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class FinanceAction extends ActionSupport {
-	private ICustomerDAO customerDAO;
-	private IEmployeeDAO employeeDAO;
 	private ITransactionDAO transactionDAO;
 	private String errorInfo;
-	private Customer customer;
-	private Employee employee;
 	private long amount;
 
 	public String requestCheck(){
@@ -40,11 +34,11 @@ public class FinanceAction extends ActionSupport {
 	}
 	
 	public String financPage(){
-		return "Finance";
+		return "gotoFinance";
 	}
 	
 	public String depositPage(){
-		return "Deposit check page";
+		return "gotoDeposit";
 	}
 	
 	public String deposit(){
@@ -63,7 +57,12 @@ public class FinanceAction extends ActionSupport {
 		this.amount = amount;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public String getErrorInfo() {
+		return errorInfo;
 	}
+	
+	public void setTransactionDAO(ITransactionDAO transactionDAO) {
+		this.transactionDAO = transactionDAO;
+	}
+
 }
