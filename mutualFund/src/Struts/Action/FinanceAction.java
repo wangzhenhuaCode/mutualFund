@@ -3,9 +3,9 @@ package Struts.Action;
 import java.util.Date;
 import java.util.Map;
 
+import Hibernate.DAO.ICustomerDAO;
 import Hibernate.DAO.ITransactionDAO;
 import Hibernate.PO.Customer;
-import Hibernate.PO.Employee;
 import Hibernate.PO.Transaction;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -14,6 +14,9 @@ import com.opensymphony.xwork2.ActionSupport;
 public class FinanceAction extends ActionSupport {
 	private ITransactionDAO transactionDAO;
 	private String errorInfo;
+	private Customer customer;
+	private ICustomerDAO customerDAO;
+
 	private long amountRequest;
 	private long amountDeposit;
 
@@ -43,13 +46,12 @@ public class FinanceAction extends ActionSupport {
 	}
 	
 	public String deposit(){
-		ActionContext ctx=ActionContext.getContext();
-		Map<String,Object> session=ctx.getSession();
-		Customer customer=(Customer)session.get("customer");
 		if(amountDeposit<0) {
 			errorInfo="Amount cannot be negative!";
 			return "depositFailure";
 		}
+		customer=customerDAO.find(customer).get(0);
+		customer.setCash(customer.getCash()+amountDeposit);
 		Transaction transaction=new Transaction();
 		transaction.setCustomer(customer);
 		transaction.setTransactionType(Transaction.PENDING_DEPOSIT);
@@ -58,11 +60,6 @@ public class FinanceAction extends ActionSupport {
 		transactionDAO.save(transaction);
 		return "depositSuccess";
 	}
-	
-	public String cancel(){
-		return "Cancel";
-	}
-	
 	
 	public void setAmount(long amount) {
 		this.amountRequest = amount;
@@ -79,4 +76,14 @@ public class FinanceAction extends ActionSupport {
 	public void setAmountDeposit(long amountDeposit) {
 		this.amountDeposit = amountDeposit;
 	}
+	
+	public void setCustermor(Customer customer) {
+		this.customer = customer;
+	}
+	
+
+	public void setCustomerDAO(ICustomerDAO customerDAO) {
+		this.customerDAO = customerDAO;
+	}
+
 }
