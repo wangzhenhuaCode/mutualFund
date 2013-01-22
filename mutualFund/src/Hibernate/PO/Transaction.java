@@ -14,6 +14,7 @@ public class Transaction implements java.io.Serializable {
 	public static Integer DEPOSITED=5;
 	public static Integer PENDING_DEPOSIT=6;
 	public static Integer WITHDRAW=7;
+	public static Integer PENDING_WITHDRAW=8;
 	// Fields
 
 	private Integer transactionId;

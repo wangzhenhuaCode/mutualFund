@@ -14,20 +14,21 @@ import com.opensymphony.xwork2.ActionSupport;
 public class FinanceAction extends ActionSupport {
 	private ITransactionDAO transactionDAO;
 	private String errorInfo;
-	private long amount;
+	private long amountRequest;
+	private long amountDeposit;
 
 	public String requestCheck(){
 		ActionContext ctx=ActionContext.getContext();
 		Map<String,Object> session=ctx.getSession();
 		Customer customer=(Customer)session.get("customer");
-		if(amount<0) {
+		if(amountRequest<0) {
 			errorInfo="Amount cannot be negative!";
 			return "requestFailure";
 		}
 		Transaction transaction=new Transaction();
 		transaction.setCustomer(customer);
-		transaction.setTransactionType(Transaction.PENDING_DEPOSIT);
-		transaction.setAmount(amount);
+		transaction.setTransactionType(Transaction.PENDING_WITHDRAW);
+		transaction.setAmount(amountRequest);
 		transaction.setExecuteDate(new Date());
 		transactionDAO.save(transaction);
 		return "requestSuccess";
@@ -44,8 +45,18 @@ public class FinanceAction extends ActionSupport {
 	public String deposit(){
 		ActionContext ctx=ActionContext.getContext();
 		Map<String,Object> session=ctx.getSession();
-		Employee e=(Employee)session.get("employee");
-		return "Deposit";
+		Customer customer=(Customer)session.get("customer");
+		if(amountDeposit<0) {
+			errorInfo="Amount cannot be negative!";
+			return "depositFailure";
+		}
+		Transaction transaction=new Transaction();
+		transaction.setCustomer(customer);
+		transaction.setTransactionType(Transaction.PENDING_DEPOSIT);
+		transaction.setAmount(amountDeposit);
+		transaction.setExecuteDate(new Date());
+		transactionDAO.save(transaction);
+		return "depositSuccess";
 	}
 	
 	public String cancel(){
@@ -54,7 +65,7 @@ public class FinanceAction extends ActionSupport {
 	
 	
 	public void setAmount(long amount) {
-		this.amount = amount;
+		this.amountRequest = amount;
 	}
 
 	public String getErrorInfo() {
@@ -65,4 +76,7 @@ public class FinanceAction extends ActionSupport {
 		this.transactionDAO = transactionDAO;
 	}
 
+	public void setAmountDeposit(long amountDeposit) {
+		this.amountDeposit = amountDeposit;
+	}
 }
